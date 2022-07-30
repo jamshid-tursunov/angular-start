@@ -9,6 +9,8 @@ import { AuthModule } from './auth/auth.module';
 import { MaterialModule } from 'src/material-module';
 
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,8 +20,8 @@ import { StoreModule } from '@ngrx/store';
     BrowserAnimationsModule,
     AuthModule,
     MaterialModule,
-    // StoreModule.forRoot([]),
     StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent],

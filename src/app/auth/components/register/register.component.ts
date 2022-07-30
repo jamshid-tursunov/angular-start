@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
+import {
+  UntypedFormControl,
+  Validators,
+  UntypedFormGroup,
+} from '@angular/forms';
 import { registerAction } from '../../store/actions';
 import { Store } from '@ngrx/store';
 
@@ -10,12 +14,11 @@ import { Store } from '@ngrx/store';
 })
 export class RegisterComponent implements OnInit {
   constructor(private store: Store) {}
-  // constructor() {}
 
-  registerForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+  registerForm = new UntypedFormGroup({
+    username: new UntypedFormControl('', [Validators.required]),
+    email: new UntypedFormControl('', [Validators.required, Validators.email]),
+    password: new UntypedFormControl('', [Validators.required]),
   });
 
   onSubmit() {
@@ -25,7 +28,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm.valid
     );
 
-    // this.store.dispatch(registerAction(this.registerForm.value));
+    this.store.dispatch(registerAction(this.registerForm.value));
   }
 
   ngOnInit(): void {}
